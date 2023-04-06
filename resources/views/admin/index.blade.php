@@ -190,22 +190,23 @@
         </header>
 
         <section class="blog-posts">
-            @foreach($experinces as $experince)
+
+
             <ul class="blog-posts-list">
 
 
-
+                @foreach($experinces as $experince)
                 <li class="blog-post-item">
                     <a href="#">
 
                         <figure class="blog-banner-box">
-                            <img src="{{asset('images/blog-2.jpg')}}" alt="Best fonts every designer" loading="lazy">
+                            <img src="{{$experince['image']}}" alt="Best fonts every designer" loading="lazy">
                         </figure>
 
                         <div class="blog-content">
 
                             <div class="blog-meta">
-                                <p class="blog-category">Design</p>
+                                <p class="blog-category">{{$experince['tags']}}</p>
 
                                 <span class="dot"></span>
 
@@ -223,6 +224,7 @@
                     </a>
                 </li>
                 @endforeach
+
             </ul>
 
         </section>

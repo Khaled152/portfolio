@@ -222,7 +222,7 @@ li {
 
       <article class="about  active" data-page="projects">
 
-        <a href="{{route('admin-dashboard')}}">  <h2 class="h2 "><ion-icon name="arrow-back-outline"></ion-icon></h2></a>
+        <a href="#">  <h2 class="h2 "><ion-icon name="arrow-back-outline"></ion-icon></h2></a>
 
 
         <header>
@@ -255,35 +255,26 @@ li {
         </div>
 
         <section class="blog-posts">
-            <form action="POST" class="form" action="#" data-form>
-
+            <form id="myForm" class="form" method="POST"  action="{{route('articles-store')}}" enctype="multipart/form-data">
+                @csrf
                 <div class="input-wrapper">
-                  <input type="text" name="title" class="form-input" placeholder="title"  data-form-input>
+
+                  <input type="text" name="title" class="form-input" placeholder="title"  >
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="type" class="form-input" placeholder="type"  data-form-input>
+                    <input type="text" name="type" class="form-input" placeholder="type"  >
                   </div>
                 <div class="tag-area input-wrapper">
                     <ul>
-                        <input type="text" class="tag-input" id="tag-input" placeholder="tags" />
+                        <input type="text" class="tag-input" id="tag-input" name="tags" placeholder="tags" />
                     </ul>
                 </div>
                 <div class="input-wrapper">
-                    <div class="form-input">
-                      <div class="preview">
-                        <img id="file-ip-1-preview">
-                      </div>
-                      <label for="file-ip-1">Upload Image</label>
-                      <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
-
-                    </div>
+                    <input type="file" name="image">
                   </div>
-                <textarea name="message" class="form-input" placeholder="Your Message"  data-form-input></textarea>
+                <textarea name="description" class="form-input" placeholder="Your Message"  ></textarea>
 
-                <button class="form-btn" type="submit"  data-form-btn>
-
-                  <span>add new project</span>
-                </button>
+                <button type="submit" class="btn btn-success mt-3">Create</button>
 
 
 
@@ -318,7 +309,19 @@ li {
 
 /* end upload image js*/
 /*tags design*/
+let myform =  document.getElementById("myForm")
+console.log(myform)
+myform.addEventListener("submit", function(e){
+    console.log(e)
+e.preventDefault()
+
+
+document.querySelector(".tag-input").value = tags.join(",")
+myform.submit()
+})
+
   const tagInput = document.querySelector(".tag-input");
+
 const tagArea = document.querySelector(".tag-area");
 const ul = document.querySelector(".tag-area ul");
 const label = document.querySelector(".label");
@@ -386,6 +389,7 @@ function renderTags() {
     const input = document.createElement("input");
     input.type = "text";
     input.className = "tag-input";
+    input.setAttribute("name" , "tags")
     addEvent(input);
     ul.appendChild(input);
     input.focus();

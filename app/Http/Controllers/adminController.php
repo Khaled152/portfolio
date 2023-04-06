@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Article;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
+
 
 class adminController extends Controller
 {
@@ -16,6 +20,16 @@ class adminController extends Controller
     public function create(){
 
         return view('admin.admin-add-articles');
+    }
+    public function store(Request $request): RedirectResponse{
+
+        $requestData = $request->all();
+        $fileName = time().$request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $fileName, 'public');
+        $requestData["image"] = '/storage/'.$path;
+        Article::create($requestData);
+
+        return redirect()->route('admin-home');
     }
 
 }
