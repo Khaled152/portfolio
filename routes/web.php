@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/admin',[adminController::class,'index'])->name('admin-home');
 Route::get('/admin/new-article',[adminController::class,'create'])->name('articles-create');
 Route::post('/admin',[adminController::class,'store'])->name('articles-store');
+Route::get('/admin/{id}', [adminController::class,'show'])->name('articles.show');
+Route::get('/admin/delete/{id}',[adminController::class,'delete'])->name('articles.delete');
+

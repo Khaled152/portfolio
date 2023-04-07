@@ -1,4 +1,14 @@
 @extends('layout.portfolio-layout')
+@section('style')
+<style>
+    .rusume {
+                background: var(--continer-theme);
+                width: 100%;
+                padding: 12px 12px 10px 12px;
+                border-radius: 5px;
+              }
+</style>
+@endsection
 @section('content')
     <!--
       - #main-content
@@ -431,11 +441,13 @@
           <ul class="skills-list content-card">
 
             <li class="skills-item">
-                <div class="mt-5 rusume">
-                    <iframe src="https://drive.google.com/file/d/1Qj4bZuAl9GIFboOVWE_Y_AxevaylQ5mw/view" allow="autoplay"></iframe>
+                <div class="mt-2 rusume" style="text-align: center;">
+                    <iframe src="https://drive.google.com/file/d/1Qj4bZuAl9GIFboOVWE_Y_AxevaylQ5mw/preview" allow="autoplay" style="width:100%;height: 480px; "></iframe>
                   </div>
 
             </li>
+
+
 
 
           </ul>

@@ -17,6 +17,15 @@ class adminController extends Controller
         return view('admin.index',['projects'=>$Projects, 'experinces'=>$experinces ,'certificates'=>$certificates]);
     }
 
+
+    public function show($id){
+        $article=Article::find($id);
+
+        return view('admin.admin-view-articales',['article'=>$article]);
+    }
+
+
+
     public function create(){
 
         return view('admin.admin-add-articles');
@@ -32,4 +41,10 @@ class adminController extends Controller
         return redirect()->route('admin-home');
     }
 
+
+    public function delete($id){
+        $article= Article::find($id);
+        $article->delete();
+        return redirect()->route('admin-home');
+    }
 }

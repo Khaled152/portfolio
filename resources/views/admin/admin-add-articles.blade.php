@@ -262,8 +262,20 @@ li {
                   <input type="text" name="title" class="form-input" placeholder="title"  >
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" name="type" class="form-input" placeholder="type"  >
-                  </div>
+
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text"   for="inputGroupSelect01">Options</label>
+                        <select class="form-select" name="type" id="inputGroupSelect01">
+                          <option selected>Choose...</option>
+                          <option value="0">Projects</option>
+                          <option value="1">experinces</option>
+                          <option value="2">certificates</option>
+                        </select>
+                      </div>
+
+                </div>
+
                 <div class="tag-area input-wrapper">
                     <ul>
                         <input type="text" class="tag-input" id="tag-input" name="tags" placeholder="tags" />

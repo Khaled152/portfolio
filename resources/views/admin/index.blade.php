@@ -70,9 +70,9 @@
         <section class="blog-posts">
 
 
-            @foreach($projects as $project)
-            <ul class="blog-posts-list">
 
+            <ul class="blog-posts-list">
+                @foreach($projects as $project)
 
 
                 <li class="blog-post-item">
@@ -97,14 +97,18 @@
                             <p class="blog-text">
                                 {{$project['description']}}
                             </p>
-
+                            <button  onclick="window.location.href='{{route('articles.show',['id'=>$project->id])}}';" type="button" class="btn btn-outline-warning">View</button>
+                            <button type="button" class="btn btn-outline-info">Edit</button>
+                            <button  onclick="window.location.href='{{route('articles.delete',['id'=>$project->id])}}';" type="button"  id="{{$project->id}}" class="btn btn-outline-danger">Delete</button>
                         </div>
 
                     </a>
-                </li>
 
+
+                </li>
+                @endforeach
             </ul>
-            @endforeach
+
         </section>
 
     </article>
@@ -165,7 +169,9 @@
                         <h3 class="project-title">{{$certificate['title']}}</h3>
 
                         <p class="project-category">{{$certificate['description']}}</p>
-
+                        <button  onclick="window.location.href='{{route('articles.show',['id'=>$certificate->id])}}';" type="button" class="btn btn-outline-warning">View</button>
+                        <button type="button" class="btn btn-outline-info">Edit</button>
+                        <button  onclick="window.location.href='{{route('articles.delete',['id'=>$certificate->id])}}';" type="button"  id="{{$certificate->id}}" class="btn btn-outline-danger">Delete</button>
                     </a>
                 </li>
 
@@ -197,31 +203,36 @@
 
                 @foreach($experinces as $experince)
                 <li class="blog-post-item">
-                    <a href="#">
+
 
                         <figure class="blog-banner-box">
-                            <img src="{{$experince['image']}}" alt="Best fonts every designer" loading="lazy">
+                            <img src="{{$experince->image}}" alt="Best fonts every designer" loading="lazy">
                         </figure>
 
                         <div class="blog-content">
 
                             <div class="blog-meta">
-                                <p class="blog-category">{{$experince['tags']}}</p>
+                                <p class="blog-category">{{$experince->tags}}</p>
 
                                 <span class="dot"></span>
 
                                 <time datetime="2022-02-23">Fab 23, 2022</time>
                             </div>
 
-                            <h3 class="h3 blog-item-title">{{$experince['title']}}</h3>
+                            <h3 class="h3 blog-item-title">{{$experince->title}}</h3>
 
                             <p class="blog-text">
-                                {{$experince['description']}}
+                                {{$experince->description}}
+
+
                             </p>
+                            <button onclick="window.location.href='{{route('articles.show',['id'=>$experince->id])}}';" type="button" class="btn btn-outline-warning">View</a></button>
+                            <button type="button" class="btn btn-outline-info">Edit</button>
+                            <button  onclick="window.location.href='{{route('articles.delete',['id'=>$experince->id])}}';" type="button"  id="{{$experince->id}}" class="btn btn-outline-danger">Delete</button>
 
                         </div>
 
-                    </a>
+
                 </li>
                 @endforeach
 
