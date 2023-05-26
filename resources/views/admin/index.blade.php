@@ -79,26 +79,18 @@
                     <a href="#">
 
                         <figure class="blog-banner-box">
-                            <img src="{{asset('images/blog-2.jpg')}}" alt="Best fonts every designer" loading="lazy">
+                            <img src="{{url($project->image)}}" alt="Best fonts every designer" loading="lazy">
                         </figure>
 
                         <div class="blog-content">
-
                             <div class="blog-meta">
-
-
-                                <span class="dot"></span>
-
                                 <time datetime="2022-02-23"></time>
                             </div>
 
                             <h3 class="h3 blog-item-title">{{$project['title']}}</h3>
 
-                            <p class="blog-text">
-                                {{$project['description']}}
-                            </p>
                             <button  onclick="window.location.href='{{route('articles.show',['id'=>$project->id])}}';" type="button" class="btn btn-outline-warning">View</button>
-                            <button type="button" class="btn btn-outline-info">Edit</button>
+                            <button onclick="window.location.href='{{route('articles.edit',['id'=>$project->id])}}';" type="button" class="btn btn-outline-info">Edit</button>
                             <button  onclick="window.location.href='{{route('articles.delete',['id'=>$project->id])}}';" type="button"  id="{{$project->id}}" class="btn btn-outline-danger">Delete</button>
                         </div>
 
@@ -136,7 +128,7 @@
 
 
 
-            <div class="filter-select-box">
+            <div class="filter-select-box" style="display: none;">
 
                 <button class="filter-select" data-select>
 
@@ -151,32 +143,30 @@
 
 
             </div>
-            @foreach($certificates as $certificate)
             <ul class="project-list">
-
+                @foreach($certificates as $certificate)
 
                 <li class="project-item  active" data-filter-item data-category="web development">
-                    <a href="#">
+                    <a href="{{route('articles.show',['id'=>$certificate->id])}}">
 
                         <figure class="project-img">
                             <div class="project-item-icon-box">
                                 <ion-icon name="eye-outline"></ion-icon>
                             </div>
 
-                            <img src="{{asset('images/project-9.png')}}" alt="arrival" loading="lazy">
+                            <img src="{{url($certificate->image)}}" alt="arrival" loading="lazy">
                         </figure>
 
                         <h3 class="project-title">{{$certificate['title']}}</h3>
 
-                        <p class="project-category">{{$certificate['description']}}</p>
                         <button  onclick="window.location.href='{{route('articles.show',['id'=>$certificate->id])}}';" type="button" class="btn btn-outline-warning">View</button>
                         <button type="button" class="btn btn-outline-info">Edit</button>
                         <button  onclick="window.location.href='{{route('articles.delete',['id'=>$certificate->id])}}';" type="button"  id="{{$certificate->id}}" class="btn btn-outline-danger">Delete</button>
                     </a>
                 </li>
+                @endforeach
 
             </ul>
-            @endforeach
         </section>
 
     </article>
@@ -211,21 +201,11 @@
 
                         <div class="blog-content">
 
-                            <div class="blog-meta">
-                                <p class="blog-category">{{$experince->tags}}</p>
 
-                                <span class="dot"></span>
-
-                                <time datetime="2022-02-23">Fab 23, 2022</time>
-                            </div>
 
                             <h3 class="h3 blog-item-title">{{$experince->title}}</h3>
 
-                            <p class="blog-text">
-                                {{$experince->description}}
-
-
-                            </p>
+                         
                             <button onclick="window.location.href='{{route('articles.show',['id'=>$experince->id])}}';" type="button" class="btn btn-outline-warning">View</a></button>
                             <button type="button" class="btn btn-outline-info">Edit</button>
                             <button  onclick="window.location.href='{{route('articles.delete',['id'=>$experince->id])}}';" type="button"  id="{{$experince->id}}" class="btn btn-outline-danger">Delete</button>

@@ -33,18 +33,35 @@ class adminController extends Controller
     public function store(Request $request): RedirectResponse{
 
         $requestData = $request->all();
-        $fileName = time().$request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $fileName, 'public');
-        $requestData["image"] = '/storage/'.$path;
+
+        $ext=$request->image->getClientOriginalExtension();
+        $imageName = time().'.'.$ext;
+
+        $path = $request->image->move('storage/app/public/images/', $imageName);
+
+
+        $requestData["image"] =$path;
+
         Article::create($requestData);
 
         return redirect()->route('admin-home');
     }
-
+/*     $imageName = time().'.'.$request->image->extension();
+        $path=$request->image->move(public_path('images'),$imageName);*/
 
     public function delete($id){
         $article= Article::find($id);
         $article->delete();
         return redirect()->route('admin-home');
     }
+    public function edit($id){
+        $article= Article::find($id);
+        return view('admin.admin-edit-articles',['article'=>$article]);
+    }
+    public function update(Request $request,$id){
+        $requestData = $request->all();
+        $article = Article::find($id);
+        $article->update($requestData);
+        return redirect()->route('admin-home');
+        }
 }

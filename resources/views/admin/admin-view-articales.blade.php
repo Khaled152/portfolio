@@ -17,7 +17,7 @@
 
       <article class="about  active" data-page="projects">
 
-        <a href="{{route('admin-home')}}">  <h2 class="h2 "><ion-icon name="arrow-back-outline"></ion-icon></h2></a>
+        <a href="{{route('admin-home')}}"> <h2 class="h2 "><ion-icon name="arrow-back-outline"></ion-icon></h2></a>
 
 
         <header>
@@ -52,8 +52,11 @@
 
         <section class="blog-posts">
             <div class="container text-align-center" >
-            <img src="{{$article->image}}" style="width:300px;margin-bottom: 10px; ">
-                <p style="color: white;">{{$article->description}}</p>
+            <img src="{{url($article->image) }}" style="width:300px;margin-bottom: 10px; ">
+            <?php
+            echo html_entity_decode($article->description);
+            ?>
+
             </div>
 
           </section>
@@ -83,7 +86,7 @@ for (let i = 0; i < spiltValue.length; i++) {
     mySpan.style.fontSize  = "10px";
     mySpan.style.fontWeight  = "bold";
     mySpan.style.marginBottom  = "10px";
-    
+
     myDiv.appendChild(mySpan);
 }
 </script>

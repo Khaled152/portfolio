@@ -2,8 +2,6 @@
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<link rel="stylesheet" href="{{ asset('css/image-style.css') }}">
 <style>
     /*upload image design*/
   .center {
@@ -228,7 +226,7 @@ li {
 
 
         <header>
-            <h2 class="h2 article-title">New Article</h2>
+            <h2 class="h2 article-title">Edit Article</h2>
 
 
           </header>
@@ -257,11 +255,11 @@ li {
         </div>
 
         <section class="blog-posts">
-            <form id="myForm" class="form" method="POST"  action="{{route('articles-store')}}" enctype="multipart/form-data">
+            <form id="myForm" class="form" method="POST"  action="{{route('articles-update',$article->id)}}" enctype="multipart/form-data">
                 @csrf
                 <div class="input-wrapper">
 
-                  <input type="text" name="title" class="form-input" placeholder="title" style="width: 300px;" >
+                <input type="text" name="title" class="form-input" value="{{$article->title}}"  >
                 </div>
                 <div class="input-wrapper">
 
@@ -269,47 +267,41 @@ li {
                     <div class="input-group mb-3">
                         <label class="input-group-text"   for="inputGroupSelect01">Options</label>
                         <select class="form-select" name="type" id="inputGroupSelect01">
-                          <option selected>Choose...</option>
-                          <option value="0">Projects</option>
-                          <option value="1">experinces</option>
-                          <option value="2">certificates</option>
+                            @if ($article->type == 0)
+                            <option selected>Projects</option>
+                            @elseif($article->type == 1)
+                            <option selected>experinces</option>
+                            @elseif($article->type == 2)
+                            <option selected>certificates</option>
+                            @endif
+                        <option value="0">Projects</option>
+                        <option value="1">experinces</option>
+                        <option value="2">certificates</option>
                         </select>
-                      </div>
+                    </div>
 
                 </div>
 
                 <div class="tag-area input-wrapper">
                     <ul>
-                        <input type="text" class="tag-input" id="tag-input" name="tags" placeholder="tags" />
+                        <input type="text" class="tag-input" id="tag-input" name="tags" value="{{$article->tags}}" />
                     </ul>
                 </div>
+                <div class="input-wrapper">
+                    <input type="file" name="image" value="{{ asset('images/'.$article->image) }}">
+                </div>
+                <textarea id="full-featured-non-premium" name="description">
+                    {{ $article->description }}
+                    </textarea>
+
+                <button type="submit" class="btn btn-success mt-3">Edit</button>
 
 
 
-                <div class="center">
-                    <div class="form-input">
-                      <label for="file-ip-1">Upload Image</label>
-                      <input type="file" id="file-ip-1" accept="image/*" name="image" onchange="showPreview(event);">
-                      <div class="preview">
-                        <img id="file-ip-1-preview">
-                      </div>
-                    </div>
-                  </div>
-<br>
-<br>
-
-
-
-                  <textarea id="full-featured-non-premium" name="description"></textarea>
-
-                <button type="submit" class="btn btn-success mt-3">Create</button>
-
-
-
-              </form>
-              <div class="app">
+            </form>
+            <div class="app">
             </div>
-          </section>
+        </section>
 
     </article>
 
@@ -324,7 +316,6 @@ li {
     </div>
 @endsection
 @section('script')
-<script src="{{ asset('js/image.js') }}"></script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
     <script src="{{ asset('js/editor.js') }}"></script>
 <script type="text/javascript">
@@ -444,5 +435,4 @@ function createTag(tag, index) {
 }
 /*end tags js*/
   </script>
-  <script src="{{ asset('js/image.js') }}"></script>
 @endsection

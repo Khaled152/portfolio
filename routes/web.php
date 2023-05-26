@@ -14,7 +14,7 @@ use App\Http\Controllers\adminController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('admin.admin-image');
 });
 
 Route::get('/admin',[adminController::class,'index'])->name('admin-home');
@@ -22,4 +22,9 @@ Route::get('/admin/new-article',[adminController::class,'create'])->name('articl
 Route::post('/admin',[adminController::class,'store'])->name('articles-store');
 Route::get('/admin/{id}', [adminController::class,'show'])->name('articles.show');
 Route::get('/admin/delete/{id}',[adminController::class,'delete'])->name('articles.delete');
+Route::get('/admin/edit/{id}',[adminController::class,'edit'])->name('articles.edit');
+Route::post('/admin/update/{id}',[adminController::class,'update'])->name('articles-update');
+
+
+
 
